@@ -16,10 +16,7 @@ guessed_states = []
 while len(guessed_states) < 50:
     answer = screen.textinput(f"{len(guessed_states)}/50 correct states","Gues another state").title()
     if answer == "Exit":
-        missing_states = []
-        for state in all_states:
-            if state not in guessed_states:
-                missing_states.append(state)
+        missing_states = [state for state in all_states if (state not in guessed_states)]
         print(missing_states)
         break
     if answer in all_states:
@@ -27,4 +24,3 @@ while len(guessed_states) < 50:
         writer.goto(states_data.x.item(), states_data.y.item()) # I have used int(states_data.x) it worked too
         writer.write(answer)
         guessed_states.append(answer)
-
